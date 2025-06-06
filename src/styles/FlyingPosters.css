@@ -1,0 +1,34 @@
+.posters-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+.posters-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* Loading state styles */
+:root.loading {
+  cursor: wait;
+}
+
+:root.loaded {
+  cursor: default;
+}
+
+/* Custom cursor styles for interaction */
+.posters-container:hover {
+  cursor: grab;
+}
+
+.posters-container:active {
+  cursor: grabbing;
+} 

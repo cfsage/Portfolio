@@ -1,7 +1,11 @@
 
+import React from 'react';
+import { TypeAnimation } from 'react-type-animation';
+import { motion } from "framer-motion";
+import FuzzyText from './ui/FuzzyText';
+import StarBorder from './ui/StarBorder';
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { TypeAnimation } from 'react-type-animation';
 
 const HeroSection = () => {
   return (
@@ -9,34 +13,61 @@ const HeroSection = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="order-2 lg:order-1 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <p className="text-portfolio-primary font-medium mb-2">Hi there, I'm</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              John Doe
-            </h1>
-            <h2 className="text-2xl md:text-3xl text-muted-foreground font-light mb-6">
-              <TypeAnimation
-                sequence={[
-                  'Multi-Skilled Professional',
-                  2000,
-                  'Video Editor',
-                  2000,
-                  'Graphics Designer',
-                  2000,
-                  'Frontend Developer',
-                  2000,
-                  'Social Media Specialist',
-                  2000,
-                ]}
-                wrapper="span"
-                speed={50}
-                className="gradient-text font-medium"
-                repeat={Infinity}
-              />
-            </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-6"
+        >
+          <FuzzyText 
+            fontSize="clamp(2rem, 6vw, 4rem)"
+            fontWeight={700}
+            color="#60a5fa"
+            className="block mb-2"
+          >
+            Hi, I'm
+          </FuzzyText>
+          <FuzzyText 
+            fontSize="clamp(2.5rem, 8vw, 5rem)"
+            fontWeight={900}
+            color="#ffffff"
+            hoverIntensity={0.8}
+          >
+            Syed Huzaifa
+          </FuzzyText>
+        </motion.div>
+        <StarBorder 
+          className="mb-8 p-6 rounded-lg"
+          color="#a855f7"
+          starCount={15}
+          speed={1.5}
+        >
+          <motion.div 
+            className="text-xl md:text-2xl lg:text-3xl h-20 flex items-center justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <TypeAnimation
+              sequence={[
+                'Full Stack Developer',
+                2000,
+                'React Specialist',
+                2000,
+                'UI/UX Enthusiast',
+                2000,
+                'Problem Solver',
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              style={{ fontSize: 'inherit', display: 'inline-block', color: '#a855f7' }}
+              repeat={Infinity}
+            />
+          </motion.div>
+        </StarBorder>
             <p className="text-lg mb-8 max-w-xl">
-              I bring creative vision and technical expertise as a Video Editor, Graphic Designer, 
-              Social Media Specialist, and Frontend Developer. Meta-certified and Google IT Support certified, 
-              I transform ideas into captivating digital experiences.
+              A highly adaptable and self-motivated freelance professional offering a comprehensive suite of digital services, including Front-End Development, Social Media Marketing, E-commerce Management (Magento), IT Support, Graphic Design, and Video Editing. Leveraging extensive training from Meta and Google, combined with practical experience using industry-standard tools like Adobe Creative Suite (Premiere Pro, After Effects, Photoshop) and DaVinci Resolve, to deliver high-quality remote solutions for diverse client needs.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild size="lg">

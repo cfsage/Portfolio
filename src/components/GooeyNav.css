@@ -1,0 +1,161 @@
+:root {
+  --linear-ease: linear(0, 0.068, 0.19 2.7%, 0.804 8.1%, 1.037, 1.199 13.2%, 1.245, 1.27 15.8%, 1.274, 1.272 17.4%, 1.249 19.1%, 0.996 28%, 0.949, 0.928 33.3%, 0.926, 0.933 36.8%, 1.001 45.6%, 1.013, 1.019 50.8%, 1.018 54.4%, 1 63.1%, 0.995 68%, 1.001 85%, 1);
+}
+
+.gooey-nav-container {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1rem;
+  z-index: 50;
+}
+
+.gooey-nav-container nav {
+  position: relative;
+  z-index: 2;
+}
+
+.gooey-nav-container nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.gooey-nav-container nav ul li {
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  position: relative;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.gooey-nav-container nav ul li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.gooey-nav-container nav ul li.active {
+  background: rgba(59, 130, 246, 0.5);
+  color: white;
+}
+
+.gooey-nav-container .effect {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  opacity: 1;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+}
+
+.gooey-nav-container .effect.text {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.gooey-nav-container .effect.text.active {
+  color: black;
+}
+
+.gooey-nav-container .effect.filter {
+  filter: blur(7px) contrast(100) blur(0);
+  mix-blend-mode: lighten;
+}
+
+.gooey-nav-container .effect.filter::before {
+  content: "";
+  position: absolute;
+  inset: -75px;
+  z-index: -2;
+  background: black;
+}
+
+.gooey-nav-container .effect.filter::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  transform: scale(0);
+  opacity: 0;
+  z-index: -1;
+  border-radius: 100vw;
+}
+
+.gooey-nav-container .effect.active::after {
+  animation: pill 0.3s ease both;
+}
+
+@keyframes pill {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.particle,
+.point {
+  position: fixed;
+  pointer-events: none;
+}
+
+.particle {
+  top: 0;
+  left: 0;
+  will-change: transform;
+  animation: particle var(--animation-time) ease-out forwards;
+}
+
+.point {
+  width: 8px;
+  height: 8px;
+  background: var(--color, #3b82f6);
+  border-radius: 50%;
+  animation: point var(--animation-time) ease-out forwards;
+}
+
+@keyframes particle {
+  0% {
+    transform: translate(
+      var(--start-x),
+      var(--start-y)
+    );
+  }
+  50% {
+    transform: translate(
+      calc(var(--start-x) + (var(--end-x) - var(--start-x)) * 0.5 + cos(var(--angle)) * var(--outer-distance)),
+      calc(var(--start-y) + (var(--end-y) - var(--start-y)) * 0.5 + sin(var(--angle)) * var(--outer-distance))
+    );
+  }
+  100% {
+    transform: translate(
+      var(--end-x),
+      var(--end-y)
+    );
+  }
+}
+
+@keyframes point {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5) rotate(var(--rotation));
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1) rotate(calc(var(--rotation) * 2));
+    opacity: 0;
+  }
+}
